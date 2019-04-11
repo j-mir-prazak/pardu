@@ -45,13 +45,11 @@ var lines = string.split(/\r?\n/);
 lines.forEach(function(v, i){
 	if (v.match(/Logitech USB Receiver\s\s+.*id/) )	{
 		var id = v.replace(/^.*id=(\d\d+).*$/, "$1")
-		presenter = id
 		xinputs[id] = {
 			'id':id,
 			'cat':cat(id)
 		}
 		console.log("presenter: " + id)
-
 	}
 })
 
