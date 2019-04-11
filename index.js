@@ -44,11 +44,15 @@ function presenter_check() {
 	lines.forEach(function(v, i){
 		if (v.match(/Logitech USB Receiver\s\s+.*id/) )	{
 			var id = v.replace(/^.*id=(\d\d+).*$/, "$1")
-			if ( ! xinputs[id] ) xinputs[id] = { 'id':id, 'cat':cat(id) }
+			if ( ! xinputs[id] )
+			{
+				console.log("pointer added:" + id)
+				xinputs[id] = { 'id':id, 'cat':cat(id) }
+			}
 			}
 			console.log("presenter: " + id)
 		}
-	})
+	)
 }
 
 
