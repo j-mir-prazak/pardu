@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE InputProfile>
+<InputProfile xmlns="http://www.qlcplus.org/InputProfile">
+ <Creator>
+  <Name>Q Light Controller Plus</Name>
+  <Version>4.12.1</Version>
+  <Author>debian</Author>
+ </Creator>
+ <Manufacturer>osc</Manufacturer>
+ <Model>osc</Model>
+ <Type>OSC</Type>
+ <Channel Number="1">
+  <Name></Name>
+  <Type>Slider</Type>
+ </Channel>
+ <Channel Number="2">
+  <Name></Name>
+  <Type>Slider</Type>
+ </Channel>
+ <Channel Number="51083">
+  <Name>fader1</Name>
+  <Type>Slider</Type>
+ </Channel>
+</InputProfile>
