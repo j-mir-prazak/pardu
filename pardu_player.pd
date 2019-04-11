@@ -88,6 +88,7 @@
 #X obj 1730 264 r dimall;
 #X obj 730 119 s dimall;
 #X obj 520 480 s seek;
+#X msg 211 107 open ../wagner.wav;
 #X connect 0 0 82 0;
 #X connect 1 0 2 0;
 #X connect 1 0 3 0;
@@ -171,3 +172,4 @@
 #X connect 78 0 77 0;
 #X connect 79 0 71 0;
 #X connect 80 0 79 0;
+#X connect 83 0 6 0;
