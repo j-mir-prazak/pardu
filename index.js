@@ -36,26 +36,33 @@ function cleanPID(pid) {
 var xinputs = {};
 
 function presenter_check() {
-	spawner.spawnSync('bash', ['-c', './xinputs.sh list'])
-	var data = presenter_check().stdout;
+
+	var data = spawner.spawnSync('bash', ['-c', './xinputs.sh list']).stdout;
 	var decoder = new StringDecoder('utf-8')
 	var string = decoder.write(data)
 	var lines = string.split(/\r?\n/);
 	lines.forEach(function(v, i){
-		if (v.match(/Logitech USB Receiver\s?.*id/) )	{
+		if (v.match(/Logitech USB Receiver\s?.*id/) ) {
 			var id = v.replace(/^.*id=(\d\d+).*$/, "$1")
-			if ( ! xinputs[id] )
-			{
+			var name = v.replace(/^.*(Logitech USB Receiver.*?)(\t*|\s?)id=.*/g,"$1" )
+			if ( ! xinputs[id] ) {
 				console.log("pointer added:" + id)
-				xinputs[id] = { 'id':id, 'cat':cat(id) }
+				xinputs[id] = { 'id':id, 'cat':cat(id), 'name':name, 'sending':false }
+				}
 			}
-			}
-			console.log("presenter: " + id)
+		})
+
+	var highest = 0;
+	for( i in xinputs ) {
+		var x = parseInt(i)
+		xinputs[i]['sending'] = false
+		if ( highest < x) highest = x
 		}
-	)
+	xinputs[highest]['sending'] = true
+
 }
 
-
+//
 
 setInterval(function() {
 
@@ -64,6 +71,7 @@ setInterval(function() {
 }, 3000)
 
 
+presenter_check()
 
 function cat(id) {
 	var tty = id || false
@@ -78,11 +86,11 @@ function cat(id) {
 		var string = decoder.write(data)
 		string=string.split(/\r?\n/)
 		for( var i = 0; i < string.length; i++) {
-			if ( string[i].length > 0 && string[i].match(/key /)) {
+			if ( string[i].length > 0 && string[i].match(/key /) && xinputs[tty]["sending"]) {
 				var line = string[i].replace(/\r/, "")
 			  line = line.replace(/\n/, "")
 			  line = line.replace(/\s+/g, " ")
-				console.log(line)
+				console.log(xinputs[id]["id"] + " : " + xinputs[id]["name"] + " : " + line)
 				spawner.spawnSync('bash', ['-c', './sendOverTCP.sh \"' + line + '\"'])
 
 			}
