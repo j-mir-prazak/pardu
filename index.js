@@ -34,6 +34,7 @@ function cleanPID(pid) {
 }
 
 var xinputs = {};
+var presenter = 0;
 
 function presenter_check() {
 
@@ -54,14 +55,14 @@ function presenter_check() {
 			}
 		})
 
-	var highest = 0;
-	for( i in xinputs ) {
-		var x = parseInt(i)
-		xinputs[i]['sending'] = false
-		if ( highest < x) highest = x
-		}
-	xinputs[highest]['sending'] = true
-	console.log("sending:"+highest)
+	// var highest = 0;
+	// for( i in xinputs ) {
+	// 	var x = parseInt(i)
+	// 	xinputs[i]['sending'] = false
+	// 	if ( highest < x) highest = x
+	// 	}
+	// xinputs[highest]['sending'] = true
+	// console.log("sending:"+highest)
 
 }
 
@@ -88,8 +89,9 @@ function cat(id) {
 	tty_cat.stdout.on('data', (data) => {
 		var string = decoder.write(data)
 		string=string.split(/\r?\n/)
+		if (presenter == 0 ) presenter = xinputs[tty]["sending"];
 		for( var i = 0; i < string.length; i++) {
-			if ( string[i].length > 0 && string[i].match(/key /) && xinputs[tty]["sending"]) {
+			if ( string[i].length > 0 && string[i].match(/key /) && presenter == xinputs[tty]["sending"] ) {
 				var line = string[i].replace(/\r/, "")
 			  line = line.replace(/\n/, "")
 			  line = line.replace(/\s+/g, " ")
