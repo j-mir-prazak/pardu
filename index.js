@@ -33,7 +33,7 @@ function cleanPID(pid) {
 	}
 }
 
-var presenter = 0;
+var xinputs = {};
 function presenter_check() {
 	return spawner.spawnSync('bash', ['-c', './xinputs.sh list'])
 }
@@ -46,11 +46,14 @@ lines.forEach(function(v, i){
 	if (v.match(/Logitech USB Receiver\s\s+.*id/) )	{
 		var id = v.replace(/^.*id=(\d\d+).*$/, "$1")
 		presenter = id
+		xinputs[id] = {
+			'id':id,
+			'cat':cat(id)
+		}
 		console.log("presenter: " + id)
 
 	}
 })
-cat(presenter)
 
 
 function cat(id) {
