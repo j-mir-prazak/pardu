@@ -43,7 +43,7 @@ function presenter_check() {
 	var lines = string.split(/\r?\n/);
 	lines.forEach(function(v, i){
 		if (v.match(/Logitech USB Receiver\s?.*id/) ) {
-			var id = v.replace(/^.*id=(\d\d+).*$/, "$1")
+			var id = v.replace(/^.*id=(\d+).*$/, "$1")
 			console.log(id)
 			var name = v.replace(/^.*(Logitech USB Receiver.*?)(\t*|\s?)id=.*/g,"$1" )
 			console.log(name)
