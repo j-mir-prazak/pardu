@@ -55,6 +55,7 @@ function presenter_check() {
 
 setInterval(function() {
 
+	presenter_check();
 
 }, 3000)
 
