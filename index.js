@@ -88,7 +88,6 @@ function cat(id) {
 
 	tty_cat.on('close', function (pid, code) {
 			cleanPID(pid)
-			if ( echo_ready )	clearInterval(echo_ready)
 			console.log(tty["tty"] + " was disconnected. killing dimmer on this node.")
 		}.bind(null, tty_cat["pid"]))
 		// console.log("kill ttys")
