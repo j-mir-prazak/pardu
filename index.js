@@ -61,6 +61,7 @@ function presenter_check() {
 		if ( highest < x) highest = x
 		}
 	xinputs[highest]['sending'] = true
+	console.log("sending:"+highest)
 
 }
 
