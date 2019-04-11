@@ -44,9 +44,9 @@ function presenter_check() {
 	lines.forEach(function(v, i){
 		if (v.match(/Logitech USB Receiver\s?.*id/) ) {
 			var id = v.replace(/^.*id=(\d+).*$/, "$1")
-			console.log(id)
+			// console.log(id)
 			var name = v.replace(/^.*(Logitech USB Receiver.*?)(\t*|\s?)id=.*/g,"$1" )
-			console.log(name)
+			// console.log(name)
 			if ( ! xinputs[id] ) {
 				console.log("pointer added:" + id)
 				xinputs[id] = { 'id':id, 'cat':cat(id), 'name':name, 'sending':false }
