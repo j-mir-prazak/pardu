@@ -34,24 +34,30 @@ function cleanPID(pid) {
 }
 
 var xinputs = {};
+
 function presenter_check() {
-	return spawner.spawnSync('bash', ['-c', './xinputs.sh list'])
+	spawner.spawnSync('bash', ['-c', './xinputs.sh list'])
+	var data = presenter_check().stdout;
+	var decoder = new StringDecoder('utf-8')
+	var string = decoder.write(data)
+	var lines = string.split(/\r?\n/);
+	lines.forEach(function(v, i){
+		if (v.match(/Logitech USB Receiver\s\s+.*id/) )	{
+			var id = v.replace(/^.*id=(\d\d+).*$/, "$1")
+			if ( ! xinputs[id] ) xinputs[id] = { 'id':id, 'cat':cat(id) }
+			}
+			console.log("presenter: " + id)
+		}
+	})
 }
 
-var data = presenter_check().stdout;
-var decoder = new StringDecoder('utf-8')
-var string = decoder.write(data)
-var lines = string.split(/\r?\n/);
-lines.forEach(function(v, i){
-	if (v.match(/Logitech USB Receiver\s\s+.*id/) )	{
-		var id = v.replace(/^.*id=(\d\d+).*$/, "$1")
-		xinputs[id] = {
-			'id':id,
-			'cat':cat(id)
-		}
-		console.log("presenter: " + id)
-	}
-})
+
+
+setInterval(function() {
+
+
+}, 3000)
+
 
 
 function cat(id) {
