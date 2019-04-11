@@ -42,7 +42,7 @@ function presenter_check() {
 	var string = decoder.write(data)
 	var lines = string.split(/\r?\n/);
 	lines.forEach(function(v, i){
-		if (v.match(/Logitech USB Receiver\s\s+.*id/) )	{
+		if (v.match(/Logitech USB Receiver\s?.*id/) )	{
 			var id = v.replace(/^.*id=(\d\d+).*$/, "$1")
 			if ( ! xinputs[id] )
 			{
