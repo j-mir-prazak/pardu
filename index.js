@@ -124,7 +124,8 @@ function pdl2ork() {
 	  var string = decoder.write(data)
 		string=string.split(/\r?\n/)
 		for( var i = 0; i < string.length; i++) {
-			if ( ( ! qlc || qlc.exitCode !== null ) && string[i].length > 0  && string[i].match(/compiled/)) {
+			console.log(string[i])
+			if ( ( ! qlc || qlc.exitCode !== null )  && string[i].match(/compiled/)) {
 					console.log("pd started")
 					qlc = qlcplus()
 			}
