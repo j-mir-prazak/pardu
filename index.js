@@ -51,7 +51,7 @@ console.log(ttys)
 console.log("presenter: " + presenter)
 console.log("arduino: " + arduino)
 console.log("enttek: " +enttek)
-presenter_check()
+// presenter_check()
 devices_status()
 }, 10000)
 ls("/dev/tty*")
@@ -157,7 +157,7 @@ function pdl2ork() {
 // qlc()
 
 function qlcplus() {
-	var qlc = spawner.spawn("bash", new Array("-c", "qlcplus -o ./scene.qxw -p"), {detached: true})
+	var qlc = spawner.spawn("bash", new Array("-c", "qlcplus -o ./scene.qxw -p -n"), {detached: true})
 	var decoder = new StringDecoder('utf-8')
 	pids.push(qlc["pid"])
 
