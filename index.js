@@ -125,8 +125,9 @@ function pdl2ork() {
 		string=string.split(/\r?\n/)
 		for( var i = 0; i < string.length; i++) {
 			if ( ( ! qlc || qlc.exitCode !== null ) && string[i].length > 0 ) {
-				// console.log(string[i])
 				if ( ( ! qlc || qlc.exitCode !== null ) && string[i].match(/processor detected/)) {
+
+					console.log("pd started")
 					qlc = qlcplus()
 				}
 				}
@@ -162,7 +163,7 @@ function qlcplus() {
 		string=string.split(/\r?\n/)
 		for( var i = 0; i < string.length; i++) {
 			if ( string[i].length > 0 ) {
-				if (string[i].match(/^copyright/i)) console.log(string[i])
+				if (string[i].match(/^copyright/i)) console.log("qlc started")
 				}
 
 			}
