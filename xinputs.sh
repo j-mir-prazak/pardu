@@ -1,5 +1,5 @@
 #!/bin/bash
-
+export DISPLAY=:0
 if [[ -z $1 ]]; then
 	echo "no command specified"
 else
