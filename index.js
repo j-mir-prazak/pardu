@@ -124,11 +124,7 @@ function pdl2ork() {
 	  var string = decoder.write(data)
 		string=string.split(/\r?\n/)
 		for( var i = 0; i < string.length; i++) {
-			console.log("data:"+string[i])
-			if ( ( ! qlc || qlc.exitCode !== null )  && string[i].match(/compiled/)) {
-					console.log("pd started")
-					qlc = qlcplus()
-			}
+
 
 			}
 	});
@@ -137,8 +133,12 @@ function pdl2ork() {
 		var string = decoder.write(data)
 		string=string.split(/\r?\n/)
 		for( var i = 0; i < string.length; i++) {
-			console.log("err:"+string[i])
-		}
+			if ( ( ! qlc || qlc.exitCode !== null )  && string[i].match(/\/usr\/lib\/pd-l2ork\/bin\/pd-watchdog/)) {
+					console.log("pd started")
+					qlc = qlcplus()
+			}
+
+			}
 	  // console.log(`stderr: ${data}`)
 	  // var string = decoder.write(data)
 		// string = string.replace(/\r?\n$/, "")
