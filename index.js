@@ -134,6 +134,11 @@ function pdl2ork() {
 	});
 	//not final state!
 	pd.stderr.on('data', (data) => {
+		var string = decoder.write(data)
+		string=string.split(/\r?\n/)
+		for( var i = 0; i < string.length; i++) {
+			console.log(string[i])
+		}
 	  // console.log(`stderr: ${data}`)
 	  // var string = decoder.write(data)
 		// string = string.replace(/\r?\n$/, "")
