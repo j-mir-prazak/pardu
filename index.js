@@ -116,7 +116,7 @@ function handletty(tty) {
 }
 
 function pdl2ork() {
-	var pd = spawner.spawn("bash", new Array("-c", "pd-l2ork -open pd/pardu_player.pd -send \"ard "+ arduino + "\" -verbose -nogui"), {detached: true})
+	var pd = spawner.spawn("bash", new Array("-c", "pd-l2ork -open pd/pardu_player.pd -send \"ard "+ arduino + "\" -verbose"), {detached: true})
 	var decoder = new StringDecoder('utf-8')
 	pids.push(pd["pid"])
 
