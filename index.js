@@ -116,7 +116,7 @@ function handletty(tty) {
 }
 
 function pdl2ork() {
-	var pd = spawner.spawn("bash", new Array("-c", "pd-l2ork -open pd/pardu_player.pd -send \"ard "+ arduino + "\""), {detached: true})
+	var pd = spawner.spawn("bash", new Array("-c", "pd-l2ork -open pd/pardu_player.pd -send \"ard "+ arduino + "\" -verbose"), {detached: true})
 	var decoder = new StringDecoder('utf-8')
 	pids.push(pd["pid"])
 
@@ -124,13 +124,10 @@ function pdl2ork() {
 	  var string = decoder.write(data)
 		string=string.split(/\r?\n/)
 		for( var i = 0; i < string.length; i++) {
-			if ( ( ! qlc || qlc.exitCode !== null ) && string[i].length > 0 ) {
-				if ( ( ! qlc || qlc.exitCode !== null ) && string[i].match(/processor detected/)) {
-
+			if ( ( ! qlc || qlc.exitCode !== null ) && string[i].length > 0  && string[i].match(/\/usr\/lib\/pd-l2ork\/bin\/pd-watchdog/)) {
 					console.log("pd started")
 					qlc = qlcplus()
-				}
-				}
+			}
 
 			}
 	});
