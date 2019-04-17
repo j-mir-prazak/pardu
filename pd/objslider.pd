@@ -1,6 +1,6 @@
 #N canvas 0 56 1920 1001 10;
-#X obj 465 741 vsl 30 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
+#X obj 465 741 vsl 30 128 1.27 127 0 0 empty empty empty 0 -9 0 10
+-262144 -1 -1 0 1;
 #X obj 457 539 snapshot~;
 #X obj 457 483 line~;
 #X floatatom 457 642 0 0 0 0 - - -;
@@ -8,7 +8,7 @@
 #X obj 517 416 metro 10;
 #X obj 457 684 int;
 #X msg 173 243 0 4000;
-#X floatatom 465 891 5 0 0 0 - - -, f 5;
+#X floatatom 465 918 5 0 0 0 - - -, f 5;
 #X obj 369 350 unpack f;
 #X floatatom 369 384 5 0 0 0 - - -, f 5;
 #X obj 354 453 !=;
@@ -34,7 +34,8 @@
 #X obj 490 568 r \$1-pause;
 #X msg 191 217 0;
 #X obj 429 110 r \$1-objslider;
-#X connect 0 0 8 0;
+#X obj 465 894 int;
+#X connect 0 0 33 0;
 #X connect 1 0 28 0;
 #X connect 2 0 1 0;
 #X connect 3 0 6 0;
@@ -72,4 +73,5 @@
 #X connect 31 0 12 0;
 #X connect 32 0 12 0;
 #X connect 32 0 27 0;
+#X connect 33 0 8 0;
 #X coords 0 -1 1 1 132 242 1 416 703;
