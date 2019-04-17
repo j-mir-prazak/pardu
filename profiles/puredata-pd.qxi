@@ -21,4 +21,8 @@
   <Name>slider 3</Name>
   <Type>Slider</Type>
  </Channel>
+ <Channel Number="3">
+  <Name>slider 4</Name>
+  <Type>Slider</Type>
+ </Channel>
 </InputProfile>

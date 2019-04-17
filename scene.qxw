@@ -13,7 +13,7 @@
      <PluginParameters MIDISendNoteOff="true"/>
     </Input>
     <Output Plugin="DMX USB" Line="0">
-     <PluginParameters UniverseChannels="3"/>
+     <PluginParameters UniverseChannels="4"/>
     </Output>
    </Universe>
    <Universe Name="Universe 2" ID="1"/>
@@ -22,13 +22,43 @@
   </InputOutputMap>
   <Fixture>
    <Manufacturer>Generic</Manufacturer>
-   <Model>Generic RGB</Model>
-   <Mode>RGB</Mode>
+   <Model>Generic</Model>
+   <Mode>1 Channel</Mode>
    <ID>0</ID>
-   <Name>Generic RGB</Name>
+   <Name>Dimmers</Name>
    <Universe>0</Universe>
    <Address>0</Address>
-   <Channels>3</Channels>
+   <Channels>1</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Generic</Manufacturer>
+   <Model>Generic</Model>
+   <Mode>1 Channel</Mode>
+   <ID>1</ID>
+   <Name>Dimmers</Name>
+   <Universe>0</Universe>
+   <Address>1</Address>
+   <Channels>1</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Generic</Manufacturer>
+   <Model>Generic</Model>
+   <Mode>1 Channel</Mode>
+   <ID>2</ID>
+   <Name>Dimmers</Name>
+   <Universe>0</Universe>
+   <Address>2</Address>
+   <Channels>1</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Generic</Manufacturer>
+   <Model>Generic</Model>
+   <Mode>1 Channel</Mode>
+   <ID>3</ID>
+   <Name>Dimmers</Name>
+   <Universe>0</Universe>
+   <Address>3</Address>
+   <Channels>1</Channels>
   </Fixture>
  </Engine>
  <VirtualConsole>
@@ -51,7 +81,7 @@
     </Appearance>
     <Input Universe="0" Channel="0"/>
     <SliderMode ValueDisplayStyle="Exact" ClickAndGoType="None" Monitor="false">Level</SliderMode>
-    <Level LowLimit="0" HighLimit="255" Value="255">
+    <Level LowLimit="0" HighLimit="255" Value="0">
      <Channel Fixture="0">0</Channel>
     </Level>
     <Playback>
@@ -59,7 +89,7 @@
     </Playback>
    </Slider>
    <Slider Caption="Slider 1" ID="1" WidgetStyle="Slider" InvertedAppearance="false">
-    <WindowState Visible="True" X="210" Y="0" Width="60" Height="200"/>
+    <WindowState Visible="True" X="150" Y="0" Width="60" Height="200"/>
     <Appearance>
      <FrameStyle>Sunken</FrameStyle>
      <ForegroundColor>Default</ForegroundColor>
@@ -69,15 +99,15 @@
     </Appearance>
     <Input Universe="0" Channel="1"/>
     <SliderMode ValueDisplayStyle="Exact" ClickAndGoType="None" Monitor="false">Level</SliderMode>
-    <Level LowLimit="0" HighLimit="255" Value="255">
-     <Channel Fixture="0">2</Channel>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="1">0</Channel>
     </Level>
     <Playback>
      <Function>4294967295</Function>
     </Playback>
    </Slider>
    <Slider Caption="Slider 2" ID="2" WidgetStyle="Slider" InvertedAppearance="false">
-    <WindowState Visible="True" X="305" Y="0" Width="60" Height="200"/>
+    <WindowState Visible="True" X="210" Y="0" Width="60" Height="200"/>
     <Appearance>
      <FrameStyle>Sunken</FrameStyle>
      <ForegroundColor>Default</ForegroundColor>
@@ -87,8 +117,26 @@
     </Appearance>
     <Input Universe="0" Channel="2"/>
     <SliderMode ValueDisplayStyle="Exact" ClickAndGoType="None" Monitor="false">Level</SliderMode>
-    <Level LowLimit="0" HighLimit="255" Value="26">
-     <Channel Fixture="0">1</Channel>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="2">0</Channel>
+    </Level>
+    <Playback>
+     <Function>4294967295</Function>
+    </Playback>
+   </Slider>
+   <Slider Caption="Slider 3" ID="3" WidgetStyle="Slider" InvertedAppearance="false">
+    <WindowState Visible="True" X="270" Y="0" Width="60" Height="200"/>
+    <Appearance>
+     <FrameStyle>Sunken</FrameStyle>
+     <ForegroundColor>Default</ForegroundColor>
+     <BackgroundColor>Default</BackgroundColor>
+     <BackgroundImage>None</BackgroundImage>
+     <Font>Default</Font>
+    </Appearance>
+    <Input Universe="0" Channel="3"/>
+    <SliderMode ValueDisplayStyle="Exact" ClickAndGoType="None" Monitor="false">Level</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="0">
+     <Channel Fixture="3">0</Channel>
     </Level>
     <Playback>
      <Function>4294967295</Function>

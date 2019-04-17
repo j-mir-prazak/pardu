@@ -1,7 +1,6 @@
 {
   "name": "pardu",
   "version": "1.0.0",
-  "description": "",
   "main": "message.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,5 +14,12 @@
   "bugs": {
     "url": "https://github.com/j-mir-prazak/pardu/issues"
   },
-  "homepage": "https://github.com/j-mir-prazak/pardu#readme"
+  "homepage": "https://github.com/j-mir-prazak/pardu#readme",
+  "dependencies": {
+    "dgram": "^1.0.1",
+    "node-osc": "^4.1.0",
+    "osc-js": "^2.0.3"
+  },
+  "devDependencies": {},
+  "description": ""
 }

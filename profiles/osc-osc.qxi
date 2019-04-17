@@ -9,16 +9,20 @@
  <Manufacturer>osc</Manufacturer>
  <Model>osc</Model>
  <Type>OSC</Type>
- <Channel Number="1">
-  <Name></Name>
+ <Channel Number="35265">
+  <Name>/1/qlc/s4</Name>
   <Type>Slider</Type>
  </Channel>
- <Channel Number="2">
-  <Name></Name>
+ <Channel Number="56939">
+  <Name>/1/qlc/s1</Name>
   <Type>Slider</Type>
  </Channel>
- <Channel Number="51083">
-  <Name>fader1</Name>
+ <Channel Number="60663">
+  <Name>/1qlc/s2</Name>
+  <Type>Slider</Type>
+ </Channel>
+ <Channel Number="64894">
+  <Name>/1/qlc/s3</Name>
   <Type>Slider</Type>
  </Channel>
 </InputProfile>

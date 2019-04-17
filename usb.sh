@@ -1,8 +1,5 @@
 #!/bin/bash
-
-for i in /dev/ttyUSB*; do
-	output=$(udevadm info "$i")
+if [[ ! -z $1 ]]; then
+	output=$(udevadm info "$1")
 	echo "$output"
-	echo "----------------------------------"
-	echo "$output" | grep VENDOR
-done
+fi
