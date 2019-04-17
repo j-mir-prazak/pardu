@@ -124,7 +124,7 @@ function pdl2ork() {
 	  var string = decoder.write(data)
 		string=string.split(/\r?\n/)
 		for( var i = 0; i < string.length; i++) {
-			console.log(string[i])
+			console.log("data:"+string[i])
 			if ( ( ! qlc || qlc.exitCode !== null )  && string[i].match(/compiled/)) {
 					console.log("pd started")
 					qlc = qlcplus()
@@ -137,7 +137,7 @@ function pdl2ork() {
 		var string = decoder.write(data)
 		string=string.split(/\r?\n/)
 		for( var i = 0; i < string.length; i++) {
-			console.log(string[i])
+			console.log("err:"+string[i])
 		}
 	  // console.log(`stderr: ${data}`)
 	  // var string = decoder.write(data)
