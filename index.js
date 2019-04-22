@@ -214,7 +214,7 @@ function devices_status() {
 	if ( ent ) console.log( "enttek is " + enttek )
 	if ( ard ) console.log( "arduino is " + arduino )
 
-	if ( ent && ard && (! pd || pd.exitCode !== null || pd.signalCode !== null ) && ( ! qlc || qlc.exitCode !== null  || qlc.signalCode !== null  ) ) {
+	if ( enttek && arduino && (! pd || pd.exitCode !== null || pd.signalCode !== null ) && ( ! qlc || qlc.exitCode !== null  || qlc.signalCode !== null  ) ) {
 		pd = pdl2ork()
 	}
 
