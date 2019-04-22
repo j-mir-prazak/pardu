@@ -197,6 +197,7 @@ function devices_status() {
 	for (var i in ttys) {
 		if ( ttys[i]["vendor"] == "0403" ) ent = ttys[i]["tty"]
 		if ( ttys[i]["vendor"] == "2341" ) ard = ttys[i]["tty"]
+		if ( ttys[i]["vendor"] == "1a86" ) ard = ttys[i]["tty"]
 	}
 	if ( enttek && enttek != ent ) {
 		ent = "loaded"
@@ -216,7 +217,7 @@ function devices_status() {
 
 	console.log( ( ! pd || pd.exitCode !== null || pd.signalCode !== null ) )
 	console.log( ( ! qlc || qlc.exitCode !== null  || qlc.signalCode !== null ) )
-	
+
 	if ( enttek && arduino && (! pd || pd.exitCode !== null || pd.signalCode !== null ) && ( ! qlc || qlc.exitCode !== null  || qlc.signalCode !== null  ) ) {
 		pd = pdl2ork()
 	}
