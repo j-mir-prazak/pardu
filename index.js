@@ -185,7 +185,8 @@ function qlcplus() {
 		// string = string.replace(/\r?\n$/, "")
 		// if ( string.match(/^qlc: cannot access/)) console.log(search + " not found")
 		// return faqlce
-	});
+	}
+});
 
 	qlc.on('close', function (pid, code) {
 
