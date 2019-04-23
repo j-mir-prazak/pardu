@@ -1,4 +1,6 @@
 #!/bin/bash
+CURDIR=$(dirname $0)
+cd "$CURDIR"
 
 Process="node"
 counter=0
