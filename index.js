@@ -134,7 +134,7 @@ function pdl2ork() {
 		string=string.split(/\r?\n/)
 		for( var i = 0; i < string.length; i++) {
 			console.log(string[i])
-			if ( ( qlc && ( qlc.exitCode !== null || pd.signalCode !== null ) ) || ! qlc )  && string[i].match(/\/usr\/lib\/pd-l2ork\/bin\/pd-watchdog/)) {
+			if (  ( ( qlc && ( qlc.exitCode !== null || pd.signalCode !== null ) ) || ! qlc )  && string[i].match(/\/usr\/lib\/pd-l2ork\/bin\/pd-watchdog/)) {
 					console.log("pd started")
 					qlc = qlcplus()
 			}
