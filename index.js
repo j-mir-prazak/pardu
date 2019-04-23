@@ -136,11 +136,8 @@ function pdl2ork() {
 		string=string.split(/\r?\n/)
 		for( var i = 0; i < string.length; i++) {
 			console.log(string[i])
-			if  ( ! qlc || qlc.exitCode !== null  || qlc.signalCode !== null ) {
-					console.log("pd started")
-					pd_running = true;
-			}
-
+			pd_running = true;
+			console.log("pd started")
 			}
 	  // console.log(`stderr: ${data}`)
 	  // var string = decoder.write(data)
@@ -168,6 +165,7 @@ function qlcplus() {
 	  var string = decoder.write(data)
 		string=string.split(/\r?\n/)
 		for( var i = 0; i < string.length; i++) {
+			qlc_running = true;
 			if ( string[i].length > 0 ) {
 				if (string[i].match(/^copyright/i)) console.log("qlc started")
 				}
@@ -229,7 +227,7 @@ function devices_status() {
 	console.log( "pd down: " + ( ! pd || pd.exitCode !== null || pd.signalCode !== null ) )
 	console.log( "qlc down: " + ( ! qlc || qlc.exitCode !== null  || qlc.signalCode !== null ) )
 
-	if ( enttek && arduino && pd_running == false && qlc_runnig == false ) {
+	if ( enttek && ! arduino && pd_running == false && qlc_running == false ) {
 		pd = pdl2ork()
 	}
 
