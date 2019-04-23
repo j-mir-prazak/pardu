@@ -126,6 +126,8 @@ function pdl2ork() {
 	  var string = decoder.write(data)
 		string=string.split(/\r?\n/)
 		for( var i = 0; i < string.length; i++) {
+			pd_running = true;
+			console.log("pd started")
 
 
 			}
@@ -135,7 +137,6 @@ function pdl2ork() {
 		var string = decoder.write(data)
 		string=string.split(/\r?\n/)
 		for( var i = 0; i < string.length; i++) {
-			console.log(string[i])
 			pd_running = true;
 			console.log("pd started")
 			}
@@ -236,11 +237,14 @@ function devices_status() {
 		if ( qlc_running ) {
 			console.log("killing qlc")
 			process.kill(-qlc["pid"])
+			pd_running = false
+			qlc_running = false
 		}
 	}
 	if ( pd_running == true && qlc_running == false ) {
 		console.log("qlc down")
 		console.log("starting qlc")
+		qlc_running = true
 		qlc = qlcplus();
 	}
 }
