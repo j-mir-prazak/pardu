@@ -230,14 +230,14 @@ function devices_status() {
 		pd = pdl2ork()
 	}
 
-	if ( pd && ( pd.exitCode !== null || pd.signalCode !== null ) ) {
+	if ( ( pd && ( pd.exitCode !== null || pd.signalCode !== null ) ) ) {
 		console.log("pd down")
 		if ( qlc && qlc.exitCode === null && qlc.signalCode === null ) {
 			console.log("killing qlc")
 			process.kill(-qlc["pid"])
 		}
 	}
-	if ( qlc && ( qlc.exitCode !== null || pd.signalCode !== null ) ) {
+	if ( ( qlc && ( qlc.exitCode !== null || pd.signalCode !== null ) ) || ! qlc ) {
 
 		console.log("qlc down")
 		if ( pd && pd.exitCode === null && pd.signalCode === null ) {
