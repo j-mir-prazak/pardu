@@ -41,6 +41,8 @@ var arduino = "";
 var ttys = {}
 var qlc;
 var pd;
+var pd_running = false;
+var qlc_running = false;
 var running = false;
 
 setInterval(function(){
@@ -136,7 +138,7 @@ function pdl2ork() {
 			console.log(string[i])
 			if  ( ! qlc || qlc.exitCode !== null  || qlc.signalCode !== null ) {
 					console.log("pd started")
-					qlc = qlcplus()
+					pd_running = true;
 			}
 
 			}
@@ -148,7 +150,7 @@ function pdl2ork() {
 	});
 
 	pd.on('close', function (pid, code) {
-
+		qlc_running=false
 		console.log("pd closed")
 		cleanPID(pid)
 	}.bind(null, pd["pid"]));
@@ -178,6 +180,7 @@ function qlcplus() {
 		string=string.split(/\r?\n/)
 		for( var i = 0; i < string.length; i++) {
 			if ( string[i].length > 0 ) {
+				qlc_running = true;
 				if (string[i].match(/^copyright/i)) console.log("qlc started")
 				}
 	  // console.log(`stderr: ${data}`)
@@ -189,7 +192,7 @@ function qlcplus() {
 });
 
 	qlc.on('close', function (pid, code) {
-
+		qlc_running=false
 		console.log("qlc closed")
 		cleanPID(pid)
 	}.bind(null, qlc["pid"]));
@@ -232,18 +235,15 @@ function devices_status() {
 
 	if ( ( pd && ( pd.exitCode !== null || pd.signalCode !== null ) ) ) {
 		console.log("pd down")
-		if ( qlc && qlc.exitCode === null && qlc.signalCode === null ) {
+		if ( qlc_running ) {
 			console.log("killing qlc")
 			process.kill(-qlc["pid"])
 		}
 	}
-	if ( ( qlc && ( qlc.exitCode !== null || pd.signalCode !== null ) ) || ! qlc ) {
-
+	if ( pd_running && qlc_running = false ) {
 		console.log("qlc down")
-		if ( pd && pd.exitCode === null && pd.signalCode === null ) {
-			console.log("starting qlc")
-			qlc = qlcplus();
-		}
+		console.log("starting qlc")
+		qlc = qlcplus();
 	}
 }
 
