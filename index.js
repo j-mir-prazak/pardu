@@ -225,7 +225,7 @@ function devices_status() {
 	console.log( "pd down: " + ( ! pd || pd.exitCode !== null || pd.signalCode !== null ) )
 	console.log( "qlc down: " + ( ! qlc || qlc.exitCode !== null  || qlc.signalCode !== null ) )
 
-	if ( enttek && ! arduino && pd_running == false && qlc_running == false ) {
+	if ( enttek && arduino && pd_running == false && qlc_running == false ) {
 		pd_running = true
 		pd = pdl2ork()
 	}
