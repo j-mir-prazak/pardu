@@ -150,7 +150,7 @@ function pdl2ork() {
 	});
 
 	pd.on('close', function (pid, code) {
-		qlc_running=false
+		pd_running="exit"
 		console.log("pd closed")
 		cleanPID(pid)
 	}.bind(null, pd["pid"]));
@@ -229,11 +229,11 @@ function devices_status() {
 	console.log( "pd down: " + ( ! pd || pd.exitCode !== null || pd.signalCode !== null ) )
 	console.log( "qlc down: " + ( ! qlc || qlc.exitCode !== null  || qlc.signalCode !== null ) )
 
-	if ( enttek && arduino && (! pd || pd.exitCode !== null || pd.signalCode !== null ) && ( ! qlc || qlc.exitCode !== null  || qlc.signalCode !== null  ) ) {
+	if ( enttek && arduino && pd_running == false && qlc_runnig == false ) {
 		pd = pdl2ork()
 	}
 
-	if ( pd_running == false ) {
+	if ( pd_running == "exit" ) {
 		console.log("pd down")
 		if ( qlc_running ) {
 			console.log("killing qlc")
