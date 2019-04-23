@@ -134,7 +134,7 @@ function pdl2ork() {
 		string=string.split(/\r?\n/)
 		for( var i = 0; i < string.length; i++) {
 			console.log(string[i])
-			if  ( ( qlc && ( qlc.exitCode !== null || pd.signalCode !== null ) ) || ! qlc ) {
+			if  ( ! qlc || qlc.exitCode !== null  || qlc.signalCode !== null ) {
 					console.log("pd started")
 					qlc = qlcplus()
 			}
