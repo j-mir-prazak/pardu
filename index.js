@@ -233,14 +233,14 @@ function devices_status() {
 		pd = pdl2ork()
 	}
 
-	if ( ( pd && ( pd.exitCode !== null || pd.signalCode !== null ) ) ) {
+	if ( pd_running == false ) {
 		console.log("pd down")
 		if ( qlc_running ) {
 			console.log("killing qlc")
 			process.kill(-qlc["pid"])
 		}
 	}
-	if ( pd_running && qlc_running = false ) {
+	if ( pd_running == true && qlc_running == false ) {
 		console.log("qlc down")
 		console.log("starting qlc")
 		qlc = qlcplus();
