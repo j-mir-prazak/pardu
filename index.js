@@ -243,7 +243,7 @@ function devices_status() {
 		console.log("qlc down")
 		console.log("starting qlc")
 		qlc_running = true
-		qlc = qlcplus();
+		setTimeout(function(){qlc = qlcplus()},15000)
 	}
 }
 
