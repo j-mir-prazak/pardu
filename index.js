@@ -319,6 +319,7 @@ function presenter_check() {
 	var decoder = new StringDecoder('utf-8')
 	var buffer = new Array();
 	data.on('data', (data) => {
+		console.log(data)
 		var string = decoder.write(data)
 		string=string.split(/\r?\n/)
 		for( var i = 0; i < string.length; i++) {
