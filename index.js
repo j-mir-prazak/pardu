@@ -562,7 +562,15 @@ function setupPlayer(argument) {
 			string=string.split(/\r?\n/)
 			for( var i = 0; i < string.length; i++) {
 
-				if (string[i].length > 0 && string[i].match(/Volume:/) )
+				 if (string[i].length > 0 && string[i].match(/Starting playback/) )
+				{
+					player["player"].pause()
+					player["state"] = 0
+					// spawner.spawnSync('bash', ['-c', './sendOverTCP.sh \"114 press\"'])
+					console.log("player started playing")
+				}
+
+				else if (string[i].length > 0 && string[i].match(/Volume:/) )
 				{
 
 					var vol = escape(string[i])
@@ -574,14 +582,6 @@ function setupPlayer(argument) {
 					tty["volume"] = vol
 					console.log("Current volume: " + player["player"]["volume"] + "%")
 
-				}
-
-				else if (string[i].length > 0 && string[i].match(/Starting playback/) )
-				{
-					player["player"].pause()
-					player["state"] = 0
-					// spawner.spawnSync('bash', ['-c', './sendOverTCP.sh \"114 press\"'])
-					console.log("player started playing")
 				}
 
 				else if (string[i].length > 0 && string[i].match(/.*5B(K*)/))console.log(string[i])
