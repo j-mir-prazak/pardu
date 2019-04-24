@@ -524,8 +524,8 @@ function setupPlayer(argument) {
 		console.log(argument + " exists")
 		current_file = argument
 		var player = {
-		"player": omx("pd/" + argument, 35),
-		"volume": 35,
+		"player": omx("pd/" + argument, 95),
+		"volume": 95,
 		"state":0
 		}
 		var pid = player["player"].pid
