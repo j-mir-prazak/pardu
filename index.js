@@ -550,6 +550,8 @@ function setupPlayer(argument) {
 		}
 		var pid = player["player"].pid
 		pids.push(pid)
+		player["player"].pause()
+		player["state"] = 0
 
 	}
 
@@ -564,8 +566,6 @@ function setupPlayer(argument) {
 
 				 if (string[i].length > 0 && string[i].match(/Starting playback/) )
 				{
-					player["player"].pause()
-					player["state"] = 0
 					// spawner.spawnSync('bash', ['-c', './sendOverTCP.sh \"114 press\"'])
 					console.log("player started playing")
 				}
