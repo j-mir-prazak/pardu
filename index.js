@@ -565,12 +565,13 @@ function setupPlayer(argument) {
 			var decoder = new StringDecoder('utf-8')
 			var string = decoder.write(data)
 			string=string.split(/\r?\n/)
+
 			for( var i = 0; i < string.length; i++) {
 
 				 if (string[i].length > 0 && string[i].match(/Starting playback/) )
 				{
 					// spawner.spawnSync('bash', ['-c', './sendOverTCP.sh \"114 press\"'])
-					console.log("player started playing")
+					console.log(string[i])
 				}
 
 				else if (string[i].length > 0 && string[i].match(/Volume:/) )
