@@ -315,7 +315,7 @@ function ls(search) {
 
 function presenter_check() {
 
-	var data = spawner.spawn('bash', ['-c', '\"./xinputs.sh list\"']);
+	var data = spawner.spawn('bash', new Array('-c', '\"./xinputs.sh list\"') );
 	var decoder = new StringDecoder('utf-8')
 	var buffer = new Array();
 	data.on('data', (data) => {
