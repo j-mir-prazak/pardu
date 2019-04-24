@@ -68,7 +68,7 @@ console.log("presenter: " + presenter)
 console.log("arduino: " + arduino)
 console.log("enttek: " +enttek)
 presenter_check()
-spawner.spawnSync('bash', ['-c', './socatcleaner.sh'])
+pids.push(spawner.spawn('bash', ['-c', './socatcleaner.sh']).pid)
 
 function udev(tty) {
 	var tty=tty || false
@@ -421,7 +421,7 @@ function cat(id) {
 							presses.length=0
 						// presses.splice(0, presses.length)
 							console.log(press["press"])
-							spawner.spawnSync('bash', ['-c', './sendOverTCP.sh \"' + press["press"] + '\"'])
+							pids.push(spawner.spawn('bash', ['-c', './sendOverTCP.sh \"' + press["press"] + '\"']).pid)
 						}
 					}.bind(null, presses), 500)
 				}
@@ -523,7 +523,7 @@ function socat(id) {
 	})
 
 	tty_cat.on('close', function (pid, code) {
-			spawner.spawnSync('bash', ['-c', './socatcleaner.sh'])
+			pids.push(spawner.spawn('bash', ['-c', './socatcleaner.sh']).pid)
 			cleanPID(pid)
 			console.log("closed")
 		}.bind(null, tty_cat["pid"]))
@@ -567,24 +567,9 @@ function setupPlayer(argument) {
 
 			for( var i = 0; i < string.length; i++) {
 
-				console.log("mplayer:"+string[i])
 				 if (string[i].length > 0 && string[i].match(/Starting playback/) )
 				{
 					// spawner.spawnSync('bash', ['-c', './sendOverTCP.sh \"114 press\"'])
-				}
-
-				else if (string[i].length > 0 && string[i].match(/Volume:/) )
-				{
-
-					var vol = escape(string[i])
-					vol = vol.replace(/^.*5B(K*)(Volume)/, "$2")
-					vol = unescape(vol)
-					vol = vol.replace(/\r?\n/g,"")
-					vol = vol.replace(/Volume: (.*?) *%/i,"$1")
-					player["player"]["volume"] = vol
-					tty["volume"] = vol
-					console.log("Current volume: " + player["player"]["volume"] + "%")
-
 				}
 
 				else if (string[i].length > 0 && string[i].match(/.*5B(K*)/))console.log(string[i])
