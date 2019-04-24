@@ -567,10 +567,10 @@ function setupPlayer(argument) {
 
 			for( var i = 0; i < string.length; i++) {
 
+				console.log("mplayer:"+string[i])
 				 if (string[i].length > 0 && string[i].match(/Starting playback/) )
 				{
 					// spawner.spawnSync('bash', ['-c', './sendOverTCP.sh \"114 press\"'])
-					console.log(string[i])
 				}
 
 				else if (string[i].length > 0 && string[i].match(/Volume:/) )
