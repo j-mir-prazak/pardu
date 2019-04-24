@@ -320,12 +320,11 @@ function presenter_check() {
 	var decoder = new StringDecoder('utf-8')
 	var buffer = new Array();
 	data.stdout.on('data', (data) => {
-		console.log(data)
 		var string = decoder.write(data)
 		string=string.split(/\r?\n/)
 		for( var i = 0; i < string.length; i++) {
 				if ( string[i].length > 0 ) {
-					console.log(string[i])
+					// console.log(string[i])
 					buffer.push(string[i])
 				}
 			}
