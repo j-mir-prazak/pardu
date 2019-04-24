@@ -57,7 +57,7 @@ console.log("presenter: " + presenter)
 console.log("arduino: " + arduino)
 console.log("enttek: " +enttek)
 if (player) console.log("player state: " + player["state"])
-// presenter_check()
+presenter_check()
 devices_status()
 }, 3000)
 ls("/dev/tty*")
@@ -323,6 +323,7 @@ function presenter_check() {
 		string=string.split(/\r?\n/)
 		for( var i = 0; i < string.length; i++) {
 				if ( string[i].length > 0 ) {
+					console.log(string[i])
 					buffer.push(string[i])
 				}
 			}
