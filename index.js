@@ -45,6 +45,9 @@ var pd_running = false;
 var qlc_running = false;
 var running = false;
 
+var player;
+var current_file;
+
 setInterval(function(){
 ls("/dev/tty*")
 console.log("------------------")
@@ -53,7 +56,7 @@ console.log(ttys)
 console.log("presenter: " + presenter)
 console.log("arduino: " + arduino)
 console.log("enttek: " +enttek)
-if (player["state"]) console.log("player state: " + player["state"])
+if (player) console.log("player state: " + player["state"])
 // presenter_check()
 devices_status()
 }, 3000)
@@ -312,22 +315,40 @@ function ls(search) {
 
 function presenter_check() {
 
-	var data = spawner.spawnSync('bash', ['-c', './xinputs.sh list']).stdout;
+	var data = spawner.spawn('bash', ['-c', './xinputs.sh list']);
 	var decoder = new StringDecoder('utf-8')
-	var string = decoder.write(data)
-	var lines = string.split(/\r?\n/);
-	lines.forEach(function(v, i){
-		if (v.match(/Logitech USB Receiver\s?.*id/) ) {
-			var id = v.replace(/^.*id=(\d+).*$/, "$1")
-			// console.log(id)
-			var name = v.replace(/^.*(Logitech USB Receiver.*?)(\t*|\s?)id=.*/g,"$1" )
-			// console.log(name)
-			if ( ! xinputs[id] ) {
-				console.log("pointer added:" + id)
-				xinputs[id] = { 'id':id, 'cat':cat(id), 'name':name, 'sending':false }
+	var buffer = new Array();
+	data.on('data', (data) => {
+		var string = decoder.write(data)
+		string=string.split(/\r?\n/)
+		for( var i = 0; i < string.length; i++) {
+				if ( string[i].length > 0 ) {
+					buffer.push(string[i])
 				}
 			}
-		})
+	})
+	data.on("close", function (pid, code) {
+
+		buffer.forEach(function(v, i){
+			if (v.match(/Logitech USB Receiver\s?.*id/) ) {
+				var id = v.replace(/^.*id=(\d+).*$/, "$1")
+				// console.log(id)
+				var name = v.replace(/^.*(Logitech USB Receiver.*?)(\t*|\s?)id=.*/g,"$1" )
+				// console.log(name)
+				if ( ! xinputs[id] ) {
+					console.log("pointer added:" + id)
+					xinputs[id] = { 'id':id, 'cat':cat(id), 'name':name, 'sending':false }
+					}
+				}
+			})
+
+
+			cleanPID(pid)
+			console.log("closed")
+		}.bind(null, data.pid))
+
+
+
 
 	// var highest = 0;
 	// for( i in xinputs ) {
@@ -457,8 +478,6 @@ function presenter_click(array){
 
 socat("a")
 
-var player;
-var current_file;
 function socat(id) {
 	var tty = id || false
 	if ( ! tty ) return false
