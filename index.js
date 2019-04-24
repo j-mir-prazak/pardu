@@ -315,10 +315,11 @@ function ls(search) {
 
 function presenter_check() {
 
-	var data = spawner.spawn('bash', new Array('-c', '\"./xinputs.sh list\"') );
+	var data = spawner.spawn('bash', new Array('./xinputs.sh',  'list'), {detached: true});
+	var pid = data.pid
 	var decoder = new StringDecoder('utf-8')
 	var buffer = new Array();
-	data.on('data', (data) => {
+	data.stdout.on('data', (data) => {
 		console.log(data)
 		var string = decoder.write(data)
 		string=string.split(/\r?\n/)
