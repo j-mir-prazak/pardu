@@ -238,7 +238,7 @@ function devices_status() {
 		console.log("pd down")
 		if ( qlc_running ) {
 			console.log("killing qlc")
-			process.kill(-qlc["pid"])
+			if (qlc["pid"]) process.kill(-qlc["pid"])
 			pd_running = false
 			qlc_running = false
 		}
