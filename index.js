@@ -47,6 +47,7 @@ var running = false;
 
 var player;
 var current_file;
+var qlctimeout;
 
 setInterval(function(){
 ls("/dev/tty*")
@@ -229,6 +230,10 @@ function devices_status() {
 	console.log( "pd down: " + ( ! pd || pd.exitCode !== null || pd.signalCode !== null ) )
 	console.log( "qlc down: " + ( ! qlc || qlc.exitCode !== null  || qlc.signalCode !== null ) )
 
+	console.log("ent + ard: " + ( enttek && arduino ))
+	console.log("pd running: " + pd_running )
+	console.log("qlc running: " + qlc_running )
+
 	if ( enttek && arduino && pd_running == false && qlc_running == false ) {
 		pd_running = true
 		pd = pdl2ork()
@@ -237,17 +242,20 @@ function devices_status() {
 	if ( pd_running == "exit" ) {
 		console.log("pd down")
 		if ( qlc_running ) {
-			console.log("killing qlc")
-			if (qlc["pid"]) process.kill(-qlc["pid"])
-			pd_running = false
-			qlc_running = false
+			if (qlc && qlc["pid"]) {
+				console.log("killing qlc")
+				process.kill(-qlc["pid"])
+			}
 		}
+		pd_running = false
+		qlc_running = false
 	}
 	if ( pd_running == true && qlc_running == false ) {
 		console.log("qlc down")
 		console.log("starting qlc")
 		qlc_running = true
-		setTimeout(function(){qlc = qlcplus()},15000)
+		if (qlctimeout) clearTimeout(qlctimeout)
+		qlctimeout = setTimeout(function(){qlc = qlcplus()},15000)
 	}
 }
 
