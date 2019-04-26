@@ -17,6 +17,7 @@
   "homepage": "https://github.com/j-mir-prazak/pardu#readme",
   "dependencies": {
     "dgram": "^1.0.1",
+    "is-running": "^2.1.0",
     "node-osc": "^4.1.0",
     "osc-js": "^2.0.3"
   },

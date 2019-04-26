@@ -5,6 +5,7 @@ var events = require('events')
 var fs = require('fs')
 var schedule = require('node-schedule')
 var omx = require('node-mplayer')
+var isrunning = require('is-running')
 
 
 //clean up
@@ -12,8 +13,10 @@ process.on('SIGHUP',  function(){ console.log('\nCLOSING: [SIGHUP]'); process.em
 process.on('SIGINT',  function(){
 	 console.log('\nCLOSING: [SIGINT]');
 	 for (var i = 0; i < pids.length; i++) {
-		console.log("KILLING: " + pids[i])
-		process.kill(-pids[i], 0)
+		 if (isrunning(pids[i])){
+			 console.log("KILLING: " + pids[i])
+			 process.kill(-pids[i])
+	}
  	}
 	 process.exit(0);
  })
