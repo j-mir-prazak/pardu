@@ -247,6 +247,7 @@ function devices_status() {
 				process.kill(-qlc["pid"])
 			}
 		}
+		pids.push(spawner.spawn('bash', ['-c', './cleanup.sh']).pid)
 		pd_running = false
 		qlc_running = false
 	}
